@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback } from "react";
 import { validateStudyData } from "../lib/schema";
 
-const TIMEOUT_MS = 15000;
+const TIMEOUT_MS = 30000;
 
 export function useAI() {
   const [status, setStatus] = useState("idle"); // idle | loading | success | error

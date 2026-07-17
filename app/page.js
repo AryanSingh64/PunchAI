@@ -226,7 +226,7 @@ export default function Landing() {
               Start Studying Free
             </Link>
             <a
-              href="https://github.com"
+              href="https://github.com/AryanSingh64/PunchAI"
               target="_blank"
               rel="noreferrer"
               className="btn-secondary"
@@ -307,7 +307,7 @@ export default function Landing() {
           <span className="footer-copy">© 2026. All rights reserved.</span>
         </div>
         <div className="footer-links">
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="footer-link">GitHub</a>
+          <a href="https://github.com/AryanSingh64/PunchAI" target="_blank" rel="noreferrer" className="footer-link">GitHub</a>
           <span className="footer-divider">|</span>
           <a href="https://aistudio.google.com" target="_blank" rel="noreferrer" className="footer-link">Gemini AI</a>
         </div>

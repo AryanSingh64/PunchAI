@@ -32,8 +32,9 @@ Return ONLY valid JSON — no markdown, no code fences, no explanation. Use this
 }
 
 async function callGemini(prompt, customKey) {
-  const key = customKey || process.env.GEMINI_API_KEY;
+  let key = customKey || process.env.GEMINI_API_KEY;
   if (!key) throw new Error("No Gemini API key provided.");
+  key = key.trim().replace(/^["']|["']$/g, "");
   const genAI = new GoogleGenerativeAI(key);
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const result = await model.generateContent(prompt);
@@ -42,8 +43,9 @@ async function callGemini(prompt, customKey) {
 }
 
 async function callGroq(prompt, customKey) {
-  const key = customKey || process.env.GROQ_API_KEY;
+  let key = customKey || process.env.GROQ_API_KEY;
   if (!key) throw new Error("No Groq API key provided.");
+  key = key.trim().replace(/^["']|["']$/g, "");
   const groq = new Groq({ apiKey: key });
   const completion = await groq.chat.completions.create({
     model: "llama-3.3-70b-versatile",
@@ -57,8 +59,18 @@ async function callGroq(prompt, customKey) {
 export async function POST(req) {
   try {
     const { text, mode = "deep" } = await req.json();
-    const customGeminiKey = req.headers.get("x-gemini-key") || "";
-    const customGroqKey = req.headers.get("x-groq-key") || "";
+    let customGeminiKey = req.headers.get("x-gemini-key") || "";
+    if (customGeminiKey === "null" || customGeminiKey === "undefined" || !customGeminiKey.trim()) {
+      customGeminiKey = "";
+    }
+    let customGroqKey = req.headers.get("x-groq-key") || "";
+    if (customGroqKey === "null" || customGroqKey === "undefined" || !customGroqKey.trim()) {
+      customGroqKey = "";
+    }
+
+    console.log("[Punch AI API] Keys resolution:");
+    console.log(` - Gemini Key source: ${customGeminiKey ? "Client custom header" : process.env.GEMINI_API_KEY ? "Local .env file" : "MISSING"}`);
+    console.log(` - Groq Key source:   ${customGroqKey ? "Client custom header" : process.env.GROQ_API_KEY ? "Local .env file" : "MISSING"}`);
 
     if (!text || text.trim().length < 5) {
       return Response.json({ error: "Please provide at least a short topic or notes." }, { status: 400 });

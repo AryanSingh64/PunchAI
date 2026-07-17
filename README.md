@@ -10,8 +10,8 @@ A high-fidelity, minimalist study workspace that transforms free-form notes or c
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone <repository-url>
-cd punch-ai
+git clone https://github.com/AryanSingh64/PunchAI.git
+cd PunchAI
 npm install
 ```
 
