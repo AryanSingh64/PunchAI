@@ -1,4 +1,9 @@
-# 🐷 Punch AI — Study Smarter, Not Harder
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80" alt="Punch AI Banner" width="100%" style="border-radius: 12px; max-height: 140px; object-fit: cover;" />
+</p>
+
+<h1 align="center"><b>🐷 PUNCH AI</b></h1>
+<p align="center"><i>Study Smarter, Not Harder</i></p>
 
 A high-fidelity, minimalist study workspace that transforms free-form notes or complex topics into interactive 3D flashcards and multiple-choice quizzes. Powered by **Google Gemini Flash 2.0** with a silent auto-fallback to **Groq (Llama 3)**.
 
@@ -24,10 +29,10 @@ PORT=3001
 ### 3. Spin Up Development Servers
 Open two terminals and run:
 ```bash
-# Terminal 1 — Client Dashboard (Vite)
+# Terminal 1 - Client Dashboard (Vite)
 cd client && npm run dev
 
-# Terminal 2 — API Gateway Server (Express)
+# Terminal 2 - API Gateway Server (Express)
 cd server && npm run dev
 ```
 Open **[http://localhost:5173](http://localhost:5173)** in your browser.

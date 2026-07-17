@@ -245,29 +245,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Product Workspace Preview */}
-      <section style={{ maxWidth: "var(--max-width)", margin: "0 auto", padding: "0 48px 96px" }}>
-        <div style={{
-          background: "var(--surface)",
-          border: "1px solid var(--border-hover)",
-          borderRadius: "var(--radius-xl)",
-          padding: "8px",
-          boxShadow: "var(--shadow-lg)",
-          overflow: "hidden"
-        }}>
-          <img
-            src="/image.png"
-            alt="Punch AI Workspace"
-            style={{
-              width: "100%",
-              borderRadius: "var(--radius-lg)",
-              display: "block",
-              border: "1px solid var(--border)"
-            }}
-          />
-        </div>
-      </section>
-
       {/* Animated steps */}
       <AnimatedFeatures />
 
