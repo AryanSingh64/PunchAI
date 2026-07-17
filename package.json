@@ -1,0 +1,11 @@
+{
+  "name": "study-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered study assistant — flashcards + quiz from any notes",
+  "scripts": {
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "install:all": "cd client && npm install && cd ../server && npm install",
+    "start": "cd server && npm start"
+  }
+}
