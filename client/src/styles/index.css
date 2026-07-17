@@ -593,7 +593,12 @@ a { text-decoration: none; color: inherit; }
   border-radius: var(--radius-xl); padding: 24px;
   transition: var(--transition); position: relative; overflow: hidden;
 }
-.feature-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.feature-card:hover {
+  background: var(--surface-2);
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
 .feature-icon {
   width: 42px; height: 42px; border-radius: 11px;
   background: var(--accent-soft);
@@ -791,7 +796,6 @@ a { text-decoration: none; color: inherit; }
   width: 26px;
   height: 26px;
   object-fit: contain;
-  filter: invert(1) brightness(1.6);
   opacity: 0.95;
   margin-right: 6px;
 }

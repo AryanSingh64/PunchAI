@@ -197,7 +197,6 @@ export default function Landing() {
     <div style={{ minHeight: "100vh" }}>
       <nav className="landing-nav" style={{ padding: "18px 48px" }}>
         <div className="landing-logo">
-          <img src="/pig_logo.png" alt="Punch AI" className="pig-logo" />
           Punch AI
         </div>
         <Link to="/app" className="btn-primary" style={{ padding: "9px 20px", fontSize: "0.85rem" }}>
@@ -243,6 +242,29 @@ export default function Landing() {
         {/* Hero Interactive Card */}
         <div>
           <HeroDemoCard />
+        </div>
+      </section>
+
+      {/* Product Workspace Preview */}
+      <section style={{ maxWidth: "var(--max-width)", margin: "0 auto", padding: "0 48px 96px" }}>
+        <div style={{
+          background: "var(--surface)",
+          border: "1px solid var(--border-hover)",
+          borderRadius: "var(--radius-xl)",
+          padding: "8px",
+          boxShadow: "var(--shadow-lg)",
+          overflow: "hidden"
+        }}>
+          <img
+            src="/image.png"
+            alt="Punch AI Workspace"
+            style={{
+              width: "100%",
+              borderRadius: "var(--radius-lg)",
+              display: "block",
+              border: "1px solid var(--border)"
+            }}
+          />
         </div>
       </section>
 
@@ -300,7 +322,7 @@ export default function Landing() {
       <footer className="landing-footer">
         <div className="footer-left">
           <div className="footer-name">
-            <img src="/pig_logo.png" alt="Punch AI" className="pig-logo" /> Punch AI
+            Punch AI
           </div>
           <span className="footer-copy">© 2026. All rights reserved.</span>
         </div>

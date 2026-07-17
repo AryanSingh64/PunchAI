@@ -64,7 +64,6 @@ export default function Study() {
         {/* Onboarding Nav matching bot aesthetic */}
         <nav className="onboarding-nav">
           <div className="landing-logo">
-            <img src="/pig_logo.png" alt="Punch AI" className="pig-logo" />
             Punch AI
           </div>
           <button
@@ -122,8 +121,8 @@ export default function Study() {
 
       {/* Sidebar */}
       <aside className="sidebar">
-        <Link to="/" className="sidebar-logo" title="Home">
-          <img src="/pig_logo.png" alt="Punch AI" className="pig-logo" />
+        <Link to="/" className="sidebar-logo" title="Home" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic", fontWeight: 800, fontSize: "1.35rem", color: "#fff" }}>
+          P
         </Link>
 
         <button

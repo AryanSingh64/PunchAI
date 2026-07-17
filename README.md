@@ -1,179 +1,89 @@
-# StudyAI — AI-Powered Flashcards & Quiz
+# 🐷 Punch AI — Study Smarter, Not Harder
 
-> Frontend Internship Assignment — Flam
-
-A modern study assistant that transforms any notes or topic into interactive flashcards and a multiple-choice quiz using Google Gemini AI (with Groq as fallback).
+A high-fidelity, minimalist study workspace that transforms free-form notes or complex topics into interactive 3D flashcards and multiple-choice quizzes. Powered by **Google Gemini Flash 2.0** with a silent auto-fallback to **Groq (Llama 3)**.
 
 ---
 
-## Features
+## ⚡ Quick Start
 
-- **AI-generated flashcards** from any notes or topic input
-- **3D card flip animation** with progress tracking
-- **Mark cards** as "Got it" or "Still learning"
-- **Multiple-choice quiz** with instant feedback and explanations
-- **Automatic wrong-answer retesting** — quiz only the ones you missed
-- **Gemini → Groq fallback** — silently switches providers if Gemini fails
-- **Full error handling** — malformed JSON, network failures, timeouts, stale requests all handled gracefully
-- **Light & Dark mode** — soft lavender light / bold crimson dark
-- **Mobile responsive** — bottom nav on mobile, sidebar on desktop
-- **API key never in the browser** — all AI calls go through the Express backend
-
----
-
-## Setup
-
-### Prerequisites
-- Node.js 18+
-- A [Gemini API key](https://aistudio.google.com) (free)
-- A [Groq API key](https://console.groq.com) (free, used as fallback)
-
-### 1. Clone & Install
-
+### 1. Clone & Install Dependencies
 ```bash
-git clone <your-repo-url>
-cd study-assistant
-
-# Install client deps
-cd client && npm install
-
-# Install server deps
-cd ../server && npm install
+git clone <repository-url>
+cd punch-ai
+npm run install:all
 ```
 
-### 2. Configure Environment
-
-```bash
-# In /server — copy and fill in your keys
-cp .env.example .env
-```
-
-Edit `server/.env`:
-```
-GEMINI_API_KEY=your_gemini_key
-GROQ_API_KEY=your_groq_key
+### 2. Configure Local Keys
+Create a `.env` file in the `server` directory (copy from `server/.env.example`):
+```env
+GEMINI_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
 PORT=3001
 ```
 
+### 3. Spin Up Development Servers
+Open two terminals and run:
 ```bash
-# In /client
-cp .env.example .env
-# VITE_API_URL=http://localhost:3001  (already set)
-```
-
-### 3. Run
-
-Open **two terminals**:
-
-```bash
-# Terminal 1 — Server
-cd server && npm run dev
-
-# Terminal 2 — Client
+# Terminal 1 — Client Dashboard (Vite)
 cd client && npm run dev
+
+# Terminal 2 — API Gateway Server (Express)
+cd server && npm run dev
 ```
-
-Open [http://localhost:5173](http://localhost:5173)
-
----
-
-## How It Works
-
-1. User types or pastes notes/topic in the input panel
-2. Client sends `POST /api/generate` to the Express server (never to AI directly)
-3. Server builds a structured prompt and calls Gemini Flash 2.0
-4. If Gemini fails (rate limit, error), server silently retries with Groq
-5. Response JSON is validated with Zod — malformed/wrong-shape responses are caught
-6. Client renders the validated data as interactive flashcards and a quiz
-
-### AI Response Shape
-```json
-{
-  "topic": "Mitosis",
-  "cards": [{ "id": "card_1", "question": "...", "answer": "...", "explanation": "..." }],
-  "quiz":  [{ "id": "q_1", "question": "...", "options": ["A","B","C","D"], "correct": 2, "explanation": "..." }]
-}
-```
+Open **[http://localhost:5173](http://localhost:5173)** in your browser.
 
 ---
 
-## Error Handling
+## 🎨 Design & Aesthetic Pillars
 
-| Scenario | Behavior |
-|---|---|
-| Malformed JSON from AI | Caught, error UI shown with raw preview + retry |
-| Wrong response shape | Zod validation fails → error UI |
-| Gemini rate limit / error | Auto-fallback to Groq (silent) |
-| Both providers fail | Error state shown to user |
-| Network timeout (>15s) | AbortController fires, timeout message shown |
-| Rapid repeated submits | Previous request aborted via AbortController |
-| Empty response | Handled by Zod min(1) constraints |
+Punch AI is designed around visual restraint, vertical visual rhythm, and ease of use:
+- **Wallpaper Background**: Deep dark theme (`#0F0F10`) with an extremely soft, low-saturation radial bottom glow.
+- **Micro-Grain Texture**: Cards feature a subtle SVG fractal noise overlay to look tactile and custom-built.
+- **Color Palette**: Highly contrasted text surfaces utilizing a single, striking pink accent (`#F0699E`) for primary actions.
+- **Onboarding Focus**: Hide sidebars and app headers when inputs are active. 100% of the screen weight is dedicated to the centered prompt input box.
 
 ---
 
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | Vite + React (hooks, functional components) |
-| Routing | React Router v6 |
-| Styling | Vanilla CSS with CSS custom properties |
-| Icons | Phosphor Icons (Duotone weight) |
-| Fonts | Plus Jakarta Sans + Inter (Google Fonts) |
-| Backend | Express.js |
-| AI Primary | Google Gemini Flash 2.0 |
-| AI Fallback | Groq llama-3.3-70b-versatile |
-| Validation | Zod |
-| State | useState + useReducer |
-
----
-
-## AI Usage Note
-
-I used Claude (Anthropic) as a coding assistant throughout this project for:
-- Planning the component architecture and state model
-- Generating boilerplate for the Express server and Zod schemas
-- Suggesting the error-handling matrix (7 failure scenarios)
-- Drafting the CSS design token system
-
-All design decisions, architecture choices, component structure, and prompt engineering were made by me. I understand every line of code and can explain/extend any part of it.
-
----
-
-## Known Limitations
-
-- No session persistence between page reloads (planned for Phase 2)
-- Groq's smaller context window may struggle with very long notes (>3000 chars)
-- No streaming — cards appear all at once after generation
-- Dark mode card flip background is currently a gradient (not pure Gemini-style animation)
-- No audio pronunciation for terms
-
----
-
-## Time Spent
-
-| Phase | Time |
-|---|---|
-| Planning & design system | ~1.5h |
-| Express server + AI integration | ~1h |
-| Hooks (useAI, useSession) | ~1.5h |
-| Components (Flashcard, Quiz, Results, Error, Loading) | ~2h |
-| Landing page | ~1h |
-| Polish, bug fixes, CSS responsive | ~1h |
-| **Total** | **~8h** |
-
----
-
-## Project Structure
+## ⚙️ How It Works (The Core Loop)
 
 ```
-study-assistant/
-├── client/src/
-│   ├── pages/        Landing.jsx, Study.jsx
-│   ├── components/   InputPanel, Flashcard, QuizMode, QuizResults, LoadingState, ErrorState
-│   ├── hooks/        useAI.js (fetch + abort + fallback), useSession.js (reducer)
-│   ├── lib/          schema.js (Zod), prompts.js
-│   └── styles/       index.css (design tokens + all styles)
-└── server/
-    └── index.js      Express + Gemini + Groq
+[Raw Notes/Topic] ──> [API Server] ──> [Gemini Flash 2.0]
+                             │                 │ (Fail/Rate Limit)
+                             │                 └──> [Groq Fallback]
+                             ▼
+                    [Zod Schema Guard] ──> [Interactive Study Deck]
 ```
+
+1. **Input**: Paste lecture slides, textbook notes, or type a simple topic.
+2. **Generation**: Client sends prompt to Express `/api/generate`. Gemini Flash 2.0 generates structured card and quiz JSON.
+3. **Fail-Safe Fallback**: If Gemini fails or hits rate limits, the server silently calls Groq (Llama-3.3-70b) to get the deck.
+4. **Zod Validation**: Server outputs are verified against Zod schemas on the client. Malformed AI responses are intercepted before the UI renders.
+5. **Session Dashboard**: Deck renders instantly. Switch between 3D Flashcards, interactive Quizzes, and retest incorrect answers.
+
+---
+
+## 🛡️ Fail-Safe Matrix
+
+| Scenario | UI/UX Behavior | Back-End Strategy |
+| :--- | :--- | :--- |
+| **Gemini API Failure** | Completely silent to the user | Server immediately falls back to Groq SDK |
+| **Both APIs Fail** | Renders custom error card with retry button | API returns `502 Bad Gateway` status |
+| **Malformed AI JSON** | Catches parsing exception, shows preview + retry option | Returns `422 Unprocessable` status |
+| **Network Timeout (>15s)** | Request is aborted safely via `AbortController` | Server request closes safely |
+| **Rapid Double Submits** | Aborts stale request in-flight to prevent race states | Safe client-side tracking |
+| **Stale Page Reloads** | Previous session is saved and reloadable from History | Local history loads from `localStorage` |
+
+---
+
+## 🛠️ Stack & Technologies
+
+| Layer | Technologies | Key Role |
+| :--- | :--- | :--- |
+| **Client Core** | React 19 + Vite | Rapid frontend component rendering |
+| **State Engine** | `useReducer` + `useContext` | Clean session/retest status management |
+| **Icons** | Phosphor Icons (Duotone) | Curated, premium graphic accents |
+| **API Gateway** | Express.js | Securely calls AI endpoints (hides keys) |
+| **Primary AI** | Google Gemini 2.0 Flash | Ultra-fast semantic data extraction |
+| **Fallback AI** | Groq Llama 3.3 70b | High-availability fallback model |
+| **Validation** | Zod | Safe response schema parsing |
+| **Styles** | Vanilla CSS | Custom design tokens and responsive layouts |
