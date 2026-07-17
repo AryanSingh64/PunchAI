@@ -1,9 +1,6 @@
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80" alt="Punch AI Banner" width="100%" style="border-radius: 12px; max-height: 140px; object-fit: cover;" />
+  <img src="./banner.png" alt="Punch AI - Study Smarter, Not Harder" width="100%" style="border-radius: 12px;" />
 </p>
-
-<h1 align="center"><b>🐷 PUNCH AI</b></h1>
-<p align="center"><i>Study Smarter, Not Harder</i></p>
 
 A high-fidelity, minimalist study workspace that transforms free-form notes or complex topics into interactive 3D flashcards and multiple-choice quizzes. Powered by **Google Gemini Flash 2.0** with a silent auto-fallback to **Groq (Llama 3)**.
 
