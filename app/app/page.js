@@ -1,19 +1,21 @@
+"use client";
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Cards, ListChecks, House,
   ClockCounterClockwise, ArrowLeft,
 } from "@phosphor-icons/react";
-import { useAI } from "../hooks/useAI";
-import { useSession } from "../hooks/useSession";
-import { useHistory } from "../hooks/useHistory";
-import InputPanel from "../components/InputPanel";
-import Flashcard from "../components/Flashcard";
-import QuizMode from "../components/QuizMode";
-import QuizResults from "../components/QuizResults";
-import LoadingState from "../components/LoadingState";
-import ErrorState from "../components/ErrorState";
-import HistoryPanel from "../components/HistoryPanel";
+import { useAI } from "../../src/hooks/useAI";
+import { useSession } from "../../src/hooks/useSession";
+import { useHistory } from "../../src/hooks/useHistory";
+import InputPanel from "../../src/components/InputPanel";
+import Flashcard from "../../src/components/Flashcard";
+import QuizMode from "../../src/components/QuizMode";
+import QuizResults from "../../src/components/QuizResults";
+import LoadingState from "../../src/components/LoadingState";
+import ErrorState from "../../src/components/ErrorState";
+import HistoryPanel from "../../src/components/HistoryPanel";
 
 export default function Study() {
   const { status, error, rawError, generate, reset: resetAI } = useAI();
@@ -121,7 +123,7 @@ export default function Study() {
 
       {/* Sidebar */}
       <aside className="sidebar">
-        <Link to="/" className="sidebar-logo" title="Home" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic", fontWeight: 800, fontSize: "1.35rem", color: "#fff" }}>
+        <Link href="/" className="sidebar-logo" title="Home" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic", fontWeight: 800, fontSize: "1.35rem", color: "#fff" }}>
           P
         </Link>
 
@@ -151,7 +153,7 @@ export default function Study() {
           >
             <ClockCounterClockwise size={19} weight="duotone" />
           </button>
-          <Link to="/" className="sidebar-btn" title="Home">
+          <Link href="/" className="sidebar-btn" title="Home">
             <House size={19} weight="duotone" />
           </Link>
         </div>
@@ -242,7 +244,7 @@ export default function Study() {
 
       {/* Mobile bottom nav */}
       <nav className="mobile-nav">
-        <Link to="/" className="mobile-nav-btn">
+        <Link href="/" className="mobile-nav-btn">
           <House size={20} weight="duotone" />
           Home
         </Link>

@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Brain, Cards, ListChecks, Trophy, Sparkle, ArrowRight, ShieldCheck } from "@phosphor-icons/react";
+import Link from "next/link";
+import { Cards, ListChecks, Trophy, Sparkle, ArrowRight, ShieldCheck } from "@phosphor-icons/react";
 
 /* ── Interactive Step Preview Component ── */
 function StepPreview({ activeIndex }) {
@@ -70,7 +72,7 @@ function StepPreview({ activeIndex }) {
 const STEPS = [
   {
     title: "Paste your notes",
-    content: "Drop in anything — lecture slides, notes, or a complex scientific topic. StudyAI reads it instantly."
+    content: "Drop in anything — lecture slides, notes, or a complex scientific topic. Punch AI reads it instantly."
   },
   {
     title: "AI structures concepts",
@@ -195,11 +197,12 @@ function HeroDemoCard() {
 export default function Landing() {
   return (
     <div style={{ minHeight: "100vh" }}>
+      {/* Nav */}
       <nav className="landing-nav" style={{ padding: "18px 48px" }}>
         <div className="landing-logo">
           Punch AI
         </div>
-        <Link to="/app" className="btn-primary" style={{ padding: "9px 20px", fontSize: "0.85rem" }}>
+        <Link href="/app" className="btn-primary" style={{ padding: "9px 20px", fontSize: "0.85rem" }}>
           Open App <ArrowRight size={13} weight="bold" />
         </Link>
       </nav>
@@ -219,7 +222,7 @@ export default function Landing() {
           </p>
           
           <div className="hero-actions">
-            <Link to="/app" className="btn-primary" style={{ fontSize: "0.9rem", padding: "12px 24px" }}>
+            <Link href="/app" className="btn-primary" style={{ fontSize: "0.9rem", padding: "12px 24px" }}>
               Start Studying Free
             </Link>
             <a
@@ -288,8 +291,8 @@ export default function Landing() {
           <h3 className="cta-title">Ready to study smarter?</h3>
           <p className="cta-sub">Convert your lecture slides or notes into structured questions today.</p>
           <div className="cta-actions">
-            <Link to="/app" className="btn-primary" style={{ padding: "12px 24px" }}>
-              Open StudyAI
+            <Link href="/app" className="btn-primary" style={{ padding: "12px 24px" }}>
+              Open Punch AI
             </Link>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import { useRef, useState, useCallback } from "react";
 import { validateStudyData } from "../lib/schema";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 const TIMEOUT_MS = 15000;
 
 export function useAI() {
@@ -32,7 +31,7 @@ export function useAI() {
     const customGroqKey = localStorage.getItem("punchai-groq-key") || "";
 
     try {
-      const res = await fetch(`${API_URL}/api/generate`, {
+      const res = await fetch("/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
